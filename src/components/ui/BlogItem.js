@@ -1,3 +1,7 @@
+import React from 'react';
+import ImageBox from './ImageBox';
+import TextBox from './TextBox';
+
 const DOM = React.DOM;
 const BlogItem = ({props}) => (
     DOM.div(
@@ -6,3 +10,5 @@ const BlogItem = ({props}) => (
         , React.createElement(TextBox, props)
     )
 );
+
+export default BlogItem;

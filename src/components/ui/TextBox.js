@@ -1,3 +1,6 @@
+import React from 'react';
+
+
 const DOM = React.DOM;
 const TextBox = ({text}) => (
     DOM.span(
@@ -5,3 +8,5 @@ const TextBox = ({text}) => (
         text
     )
 );
+
+export default TextBox;

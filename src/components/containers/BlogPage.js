@@ -1,3 +1,6 @@
+import React from 'react';
+import BlogList from '../ui/BlogList';
+
 const items = [
     {
         text: 'Blog item one',
@@ -31,7 +34,9 @@ class BlogPage extends React.Component {
     }
 }
 
-ReactDOM.render(
-    React.createElement(BlogPage),
-    document.getElementById('app')
-);
+// ReactDOM.render(
+//     React.createElement(BlogPage),
+//     document.getElementById('app')
+// );
+
+export default BlogPage;

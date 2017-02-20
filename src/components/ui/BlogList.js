@@ -1,3 +1,7 @@
+import React from 'react';
+import BlogItem from './BlogItem';
+import _ from 'lodash';
+
 const DOM = React.DOM;
 const BlogList = ({items}) => (
     DOM.ul(
@@ -13,3 +17,5 @@ const BlogList = ({items}) => (
         )
     )
 );
+
+export default BlogList;

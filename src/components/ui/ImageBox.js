@@ -1,3 +1,5 @@
+import React from 'react';
+
 const DOM = React.DOM;
 const ImageBox = ({img}) => (
     DOM.img(
@@ -12,3 +14,5 @@ const ImageBox = ({img}) => (
         }
     )
 );
+
+export default ImageBox;
