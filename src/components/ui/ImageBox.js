@@ -1,18 +1,9 @@
 import React from 'react';
+import { Image } from 'react-bootstrap'
 
 const DOM = React.DOM;
 const ImageBox = ({img}) => (
-    DOM.img(
-        {
-            alt: img.alt
-            , src: img.src
-            , width: img.width
-            , height: img.height
-            , style:{
-                border: '1px solid #000F0F'
-            }
-        }
-    )
+    <Image src={img.src} width={img.width} height={img.height} alt={img.alt} rounded/>
 );
 
 export default ImageBox;
