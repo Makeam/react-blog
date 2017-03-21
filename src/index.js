@@ -3,9 +3,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import moment from 'moment';
 import { AppContainer } from 'react-hot-loader';
 import App from './app';
-// import '../semantic/dist/semantic.min.css';
+
+moment.locale('ru');
 
 const rootEl = document.getElementById('App');
 

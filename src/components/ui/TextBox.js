@@ -1,12 +1,19 @@
-import React from 'react';
+import {DOM, PropTypes} from 'react';
 
 
-const DOM = React.DOM;
-const TextBox = ({text}) => (
+const TextBox = (props) => (
     DOM.span(
         null,
-        text
+        props.text
     )
 );
+
+TextBox.defaultProps = {
+  text: 'No content'
+};
+
+TextBox.propTypes = {
+  text: PropTypes.string
+};
 
 export default TextBox;

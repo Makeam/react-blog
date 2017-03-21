@@ -2,20 +2,14 @@ import React from 'react';
 import BlogItem from './BlogItem';
 import _ from 'lodash';
 
-const DOM = React.DOM;
-const BlogList = ({items}) => (
-    DOM.ul(
-        null,
-        _.map(
-            items,
-            (item, key) => (
-                DOM.li(
-                    {key},
-                    React.createElement(BlogItem, {props: item})
-                )
-            )
+const BlogList = ({items}) => {
+  const blogItems = _.map(items, item => (
+            <div key={item.id}>
+                <BlogItem {...item}/>
+            </div>
         )
-    )
-);
+    );
+  return (<div>{blogItems}</div>);
+};
 
 export default BlogList;
