@@ -1,24 +1,13 @@
-import React from 'react';
-import { PropTypes } from 'react';
+import React, { PropTypes } from 'react';
+// import  from 'react';
 import { Button } from 'react-bootstrap';
 
-class LikeBox extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { count: props.count };
-    this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick() {
-    this.setState({count: this.state.count + 1});
-  }
-  render() {
-    return (
-      <div>
-        <Button onClick={this.handleClick}>{this.state.count}</Button>
-      </div>
-    )
-  }
-}
+const LikeBox = ({count, clickHandler}) => (
+  <div>
+    <Button onClick={clickHandler}>{count}</Button>
+  </div>
+);
+
 
 LikeBox.defaultProps = {
   count: 0

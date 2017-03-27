@@ -7,7 +7,7 @@ import LikeBox from './LikeBox';
 import { Panel, Row, Col } from 'react-bootstrap';
 
 // const DOM = React.DOM;
-const BlogItem = ({img, text, meta}) => (
+const BlogItem = ({img, text, meta, likesHandler}) => (
     <Panel>
       <Row>
         <Col md={4} xs={6}>
@@ -18,7 +18,7 @@ const BlogItem = ({img, text, meta}) => (
         </Col>
         <Col md={4} xs={12}>
           <div>
-            <LikeBox count={meta.likesCount}/>
+            <LikeBox count={meta.likesCount} clickHandler={likesHandler}/>
             <p><span className="text-muted">author:</span> {meta.author}</p>
             <p><span className="text-muted">created:</span> {moment(meta.created_at).fromNow()}</p>
             <p><span className="text-muted">updated:</span> {moment(meta.updated_at).calendar()}</p>

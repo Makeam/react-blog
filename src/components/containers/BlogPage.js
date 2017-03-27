@@ -2,36 +2,51 @@ import React from 'react';
 import BlogList from '../ui/BlogList';
 import {Navbar, Grid, Row, Col} from 'react-bootstrap';
 import {items} from '../../constants/items';
+import _ from 'lodash';
 
 
 class BlogPage extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {items};
+  constructor(props) {
+    super(props);
+    this.state = {items};
+  }
+  incrementLikesCount(itemId) {
+    console.log(itemId);
+    let newItems = this.state.items;
+    let item = _.find(newItems, (i) => i.id === itemId);
+    if (item.meta.likesCount) {
+      item.meta.likesCount += 1;
+    } else {
+      item.meta.likesCount = 1;
     }
-    render(){
-        const {items} = this.state;
-        return(
-            <div>
-                <Navbar inverse staticTop>
-                    <Navbar.Header>
-                        <Navbar.Brand>
-                            <a href="#">React-Bootstrap-Blog</a>
-                        </Navbar.Brand>
-                    </Navbar.Header>
-                </Navbar>
-                <Grid>
-                    <Row>
-                        <Col md={12}>
-                            <BlogList items={items}/>
-                        </Col>
-                    </Row>
-                </Grid>
-            </div>
-        )
+    this.setState({items: newItems});
+  }
+  render() {
+    const {items} = this.state;
+    return (
+      <div>
+          <Navbar inverse staticTop>
+              <Navbar.Header>
+                  <Navbar.Brand>
+                      <a href="#">React-Bootstrap-Blog</a>
+                  </Navbar.Brand>
+              </Navbar.Header>
+          </Navbar>
+          <Grid>
+              <Row>
+                  <Col md={12}>
+                      <BlogList
+                        items={items}
+                        likesHandler={itemId => this.incrementLikesCount(itemId)}
+                      />
+                  </Col>
+              </Row>
+          </Grid>
+      </div>
+    );
 
-        // return React.createElement(BlogList, {items})
-    }
+    // return React.createElement(BlogList, {items})
+  }
 }
 
 export default BlogPage;
