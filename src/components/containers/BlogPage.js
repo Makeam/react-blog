@@ -1,5 +1,6 @@
 import React from 'react';
 import BlogList from '../ui/BlogList';
+import Chart from '../ui/Chart';
 import {Navbar, Grid, Row, Col} from 'react-bootstrap';
 import {items} from '../../constants/items';
 import _ from 'lodash';
@@ -21,6 +22,9 @@ class BlogPage extends React.Component {
     }
     this.setState({items: newItems});
   }
+  chartData() {
+    return this.state.items.map(item => [item.text, item.meta.likesCount ? item.meta.likesCount : 0]);
+  }
   render() {
     const {items} = this.state;
     return (
@@ -40,12 +44,15 @@ class BlogPage extends React.Component {
                         likesHandler={itemId => this.incrementLikesCount(itemId)}
                       />
                   </Col>
+                  <Col md={12}>
+                    <Chart columns={this.chartData()}/>
+                  </Col>
+                
               </Row>
           </Grid>
       </div>
     );
-
-    // return React.createElement(BlogList, {items})
+    
   }
 }
 
