@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import c3 from 'c3';
 
 class Chart extends React.Component {
-  componentDidMount(){
-    console.log('mount');
+  componentDidMount() {
     this.chart = c3.generate({
       bindto: ReactDOM.findDOMNode(this.refs.chart),
       data: {
@@ -25,5 +24,9 @@ class Chart extends React.Component {
     );
   }
 }
+
+Chart.propTypes = {
+  columns: PropTypes.arrayOf(PropTypes.array)
+};
 
 export default Chart;

@@ -13,7 +13,8 @@ LikeBox.defaultProps = {
 };
 
 LikeBox.propTypes = {
-  count: PropTypes.number
+  count: PropTypes.number,
+  clickHandler: PropTypes.func.isRequired
 };
     
 export default LikeBox;

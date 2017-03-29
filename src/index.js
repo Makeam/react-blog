@@ -12,21 +12,21 @@ moment.locale('ru');
 const rootEl = document.getElementById('App');
 
 ReactDOM.render(
-    <AppContainer>
-        <App />
-    </AppContainer>,
-    rootEl
+  <AppContainer>
+    <App />
+  </AppContainer>,
+  rootEl
 );
 
 if (module.hot) {
-    module.hot.accept('./app', () => {
-        const NextApp = require('./app').default;
+  module.hot.accept('./app', () => {
+    const NextApp = require('./app').default;
 
-        ReactDOM.render(
-            <AppContainer>
-                <NextApp />
-            </AppContainer>,
-            rootEl
-        );
-    });
+    ReactDOM.render(
+      <AppContainer>
+        <NextApp />
+      </AppContainer>,
+      rootEl
+    );
+  });
 }

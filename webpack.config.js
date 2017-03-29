@@ -9,6 +9,7 @@ var root = path.join(process.cwd(), 'src');
 module.exports = {
     entry: [
         'react-hot-loader/patch',
+        // activate HMR for React
         'webpack-dev-server/client?http://localhost:3000',
         'webpack/hot/only-dev-server',
         './src/index.js'
@@ -21,28 +22,44 @@ module.exports = {
     },
 
     module: {
-        loaders: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader'
-            }//,
-            // {
-            //     test: /\.css$/,
-            //     loaders: [
-            //         'style-loader',
-            //         'css-loader?importLoaders=1'
-            //     ]
-            // },
-            // { test: /\.(eot|png|ttf|svg|woff|woff2)$/, loader: 'url-loader'}
+        rules: [
+          {
+            test: /\.js$/,
+            loader: 'babel-loader',
+            exclude: /node_modules/
+          },
+          {
+            test: /\.(eot|png|ttf|svg|woff|woff2)$/,
+            loader: 'url-loader'
+          },
+          {
+            test: /\.css$/,
+            use:[
+              {
+                loader: 'style-loader'
+              },
+              {
+                loader: 'css-loader',
+                options:{
+                  importLoaders: 1
+                }
+              }
+            ]
+          }
         ]
     },
-
-    resolve: {
-        // root: root
+    resolve:{
+        modules: [
+             path.join(__dirname, "src"),
+             "node_modules"
+        ]
+    
     },
-
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+      new webpack.HotModuleReplacementPlugin(),
+      // enable HMR globally
+  
+      new webpack.NamedModulesPlugin(),
+      // prints more readable module names in the browser console on HMR updates
     ]
 };
