@@ -3,7 +3,7 @@ import BlogList from 'components/ui/BlogList';
 import Chart from 'components/ui/Chart';
 import { Navbar, Grid, Row, Col } from 'react-bootstrap';
 import { items } from 'constants/items';
-import { map } from 'lodash/collection';
+import update from 'immutability-helper';
 
 
 class BlogPage extends React.Component {
@@ -12,14 +12,10 @@ class BlogPage extends React.Component {
     this.state = {items};
   }
   incrementLikesCount(itemId) {
-    let count;
-    const newItems = map(this.state.items, (i) => {
-      if (i.id === itemId) {
-        count = i.meta.likesCount;
-        i.meta.likesCount = count ? count + 1 : 1;
-      }
-      return i;
-    });
+    const newItems = update(
+      this.state.items,
+      {[itemId - 1]: {meta: {likesCount: { $apply: function(x) { return x ? x + 1 : 1; }}}}}
+    );
     this.setState({items: newItems});
   }
   chartData() {

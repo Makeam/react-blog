@@ -35,7 +35,8 @@ export const items = [
     id: 3,
     meta:{
       author: 'Незнайка на Луне',
-      createdAt: Date.now()
+      createdAt: Date.now(),
+      likesCount: undefined
     }
   },
   {
