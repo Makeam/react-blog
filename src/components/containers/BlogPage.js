@@ -1,9 +1,9 @@
 import React from 'react';
 import BlogList from 'components/ui/BlogList';
 import Chart from 'components/ui/Chart';
-import {Navbar, Grid, Row, Col} from 'react-bootstrap';
-import {items} from 'constants/items';
-import {map} from 'lodash';
+import { Navbar, Grid, Row, Col } from 'react-bootstrap';
+import { items } from 'constants/items';
+import { map } from 'lodash/collection';
 
 
 class BlogPage extends React.Component {
@@ -17,10 +17,8 @@ class BlogPage extends React.Component {
       if (i.id === itemId) {
         count = i.meta.likesCount;
         i.meta.likesCount = count ? count + 1 : 1;
-        return i;
-      } else {
-        return i;
       }
+      return i;
     });
     this.setState({items: newItems});
   }

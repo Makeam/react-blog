@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import BlogItem from 'components/ui/BlogItem';
-import _ from 'lodash';
+import { map } from 'lodash/collection';
 
 const BlogList = ({items, likesHandler}) => {
-  const blogItems = _.map(items, item => (
+  const blogItems = map(items, item => (
             <div key={item.id}>
                 <BlogItem
                   {...item}
