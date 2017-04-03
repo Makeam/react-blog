@@ -14,7 +14,7 @@ class BlogPage extends React.Component {
   incrementLikesCount(itemId) {
     const newItems = update(
       this.state.items,
-      {[itemId - 1]: {meta: {likesCount: { $apply: function(x) { return x ? x + 1 : 1; }}}}}
+      {[itemId]: {meta: {likesCount: { $apply: function(x) { return x ? x + 1 : 1; }}}}}
     );
     this.setState({items: newItems});
   }

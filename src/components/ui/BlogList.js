@@ -3,23 +3,27 @@ import BlogItem from 'components/ui/BlogItem';
 import { map } from 'lodash/collection';
 
 const BlogList = ({items, likesHandler}) => {
-  const blogItems = map(items, item => (
-            <div key={item.id}>
-                <BlogItem
-                  {...item}
-                  likesHandler = {() => likesHandler(item.id)}
-                />
-            </div>
-        )
-    );
+  let i = -1;
+  const blogItems = map(items, item => {
+    i += 1;
+    let y = i;
+    return (
+      <div key={item.id}>
+        <BlogItem
+          {...item}
+          likesHandler = {() => likesHandler(y)}
+        />
+      </div>
+    )}
+  );
   return (<div>{blogItems}</div>);
 };
 
 const {image, text, meta} = BlogItem.propTypes;
-const itemType = {image, text, meta};
+// const itemType = {image, text, meta};
 
 BlogList.propTypes = {
-  items: PropTypes.arrayOf(itemType),
+  items: PropTypes.arrayOf(PropTypes.oneOfType([image, text, meta])),
   likesHandler: PropTypes.func.isRequired
 };
 
