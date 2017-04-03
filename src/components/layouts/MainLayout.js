@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react'
 import { Navbar, Grid, Row, Col } from 'react-bootstrap';
+import Link from 'components/elements/Link';
 
 const MainLayout = ({children}) => (
   <div>
@@ -17,7 +18,7 @@ const MenuNav = () => (
   <Navbar inverse staticTop>
     <Navbar.Header>
       <Navbar.Brand>
-        <a href="#">React-Bootstrap-Blog</a>
+        <Link to='/'>React-Bootstrap-Blog</Link>
       </Navbar.Brand>
     </Navbar.Header>
   </Navbar>

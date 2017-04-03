@@ -4,16 +4,18 @@ import ImageBox from 'components/ui/ImageBox';
 import TextBox from 'components/ui/TextBox';
 import LikeBox from 'components/ui/LikeBox';
 import { Panel, Row, Col } from 'react-bootstrap';
+import Link from 'components/elements/Link';
 
-// const DOM = React.DOM;
-const BlogItem = ({img, text, meta, likesHandler}) => (
+const BlogItem = ({id, img, text, meta, likesHandler}) => (
     <Panel>
       <Row>
         <Col md={4} xs={6}>
           <ImageBox {...img} />
         </Col>
         <Col md={4} xs={6}>
-          <TextBox text={text} />
+          <Link to={`posts/${id}`}>
+            <TextBox text={text} />
+          </Link>
         </Col>
         <Col md={4} xs={12}>
           <div>
@@ -39,6 +41,7 @@ BlogItem.defaultProps = {
 };
 
 BlogItem.propTypes = {
+  id: PropTypes.number,
   img: PropTypes.shape(...ImageBox.propTypes),
   text: PropTypes.string,
   meta: PropTypes.shape({
