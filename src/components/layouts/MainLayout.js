@@ -1,11 +1,13 @@
 import React, {PropTypes} from 'react'
-import { Navbar, Grid, Row, Col } from 'react-bootstrap';
+import { Navbar, Grid, Row, Col, Button } from 'react-bootstrap';
 import Link from 'components/elements/Link';
+import history from 'helpers/history';
 
 const MainLayout = ({children}) => (
   <div>
     <MenuNav/>
     <Grid>
+      <GoBackBtn/>
       {children}
     </Grid>
     <Footer/>
@@ -13,6 +15,10 @@ const MainLayout = ({children}) => (
 );
 
 export default MainLayout;
+
+const GoBackBtn = () => (
+  <Button onClick={() => history.goBack()} >Назад</Button>
+);
 
 const MenuNav = () => (
   <Navbar inverse staticTop>
