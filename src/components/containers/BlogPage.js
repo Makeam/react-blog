@@ -2,15 +2,20 @@ import React from 'react';
 import BlogList from 'components/ui/BlogList';
 import Chart from 'components/ui/Chart';
 import { Grid, Row, Col } from 'react-bootstrap';
-import { items } from 'constants/items';
+// import { items } from 'constants/items';
 import update from 'immutability-helper';
+import request from 'superagent';
 
 
 class BlogPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {items};
+    this.state = {items: []};
   }
+  componentDidMount() {
+    this.fetchPosts();
+  }
+  
   incrementLikesCount(itemId) {
     const newItems = update(
       this.state.items,
@@ -23,6 +28,15 @@ class BlogPage extends React.Component {
       item => [item.text, item.meta.likesCount ? item.meta.likesCount : 0]
     );
   }
+  
+  fetchPosts() {
+    request
+      .get('http://localhost:3001/posts')
+      .set({Accept: 'application/json'})
+      .end((err, res) => this.setState({ items: res.body }));
+    
+  }
+  
   render() {
     const {items} = this.state;
     return (
