@@ -1,6 +1,7 @@
 import MainLayout from 'components/layouts/MainLayout';
 import BlogPage from 'components/containers/BlogPage';
 import Post from 'components/containers/Post';
+import { postPath } from 'helpers/routes';
 
 const Index = {
   path: '/',
@@ -8,7 +9,7 @@ const Index = {
 };
 
 const PostRoute = {
-  path: 'posts/:id',
+  path: postPath(),
   component: Post
 };
 
