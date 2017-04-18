@@ -1,16 +1,54 @@
 import React, { PropTypes } from 'react';
 import BlogItem from 'components/ui/BlogItem';
-import items from 'constants/items';
+import update from 'immutability-helper';
+import request from 'superagent';
 import { find } from 'lodash';
+import { API_SERVER_PATH } from 'constants/blog_config';
+import { camelizeKeys } from 'humps';
 
-const Post = ({params}) => (
-  <div>
-    <BlogItem { ...find(items, (item) => {return item.id == params.id}) } />
-  </div>
-);
+class Post extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      page: props.params.id,
+      item: {}
+    };
+  }
+  
+  componentDidMount(){
+    this.fetchPost();
+  }
+  
+  fetchPost() {
+    request
+      .get(`${API_SERVER_PATH}/posts/${this.state.page}`)
+      .set({Accept: 'application/json'})
+      .end((err, res) => this.setState({ item: camelizeKeys(res.body) }));
+    
+  }
+  
+  incrementLikesCount() {
+    this.setState({
+      item: update(this.state.item, {
+        meta:{
+          likesCount: {$apply: function(x) { return x + 1 }}
+        }
+      })
+    });
+  }
+  
+  
+  render(){
+    return(
+      <div>
+        <BlogItem { ...this.state.item} likesHandler = {() => this.incrementLikesCount()} />
+      </div>
+    );
+  }
+}
 
 Post.propTypes = {
   params: PropTypes.object
-}
+};
 
 export default Post;
