@@ -1,7 +1,7 @@
 import React from 'react';
 import BlogList from 'components/ui/BlogList';
 import Chart from 'components/ui/Chart';
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import update from 'immutability-helper';
 import request from 'superagent';
 import { camelizeKeys } from 'humps';
@@ -34,7 +34,6 @@ class BlogPage extends React.Component {
       .get('http://localhost:3001/posts')
       .set({Accept: 'application/json'})
       .end((err, res) => this.setState({ items: camelizeKeys(res.body) }));
-    
   }
   
   render() {

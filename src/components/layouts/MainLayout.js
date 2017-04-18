@@ -1,5 +1,5 @@
-import React, {PropTypes} from 'react'
-import { Navbar, Grid, Row, Col, Button } from 'react-bootstrap';
+import React from 'react';
+import { Navbar, Grid, Button } from 'react-bootstrap';
 import Link from 'components/elements/Link';
 import history from 'helpers/history';
 

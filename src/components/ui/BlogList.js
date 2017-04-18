@@ -14,7 +14,7 @@ const BlogList = ({items, likesHandler}) => {
           likesHandler = {() => likesHandler(y)}
         />
       </div>
-    )}
+    );}
   );
   return (<div>{blogItems}</div>);
 };
