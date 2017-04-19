@@ -5,6 +5,7 @@ import { Row, Col } from 'react-bootstrap';
 import update from 'immutability-helper';
 import request from 'superagent';
 import { camelizeKeys } from 'humps';
+import { API_SERVER_PATH } from 'constants/blogConfig';
 
 
 class BlogPage extends React.Component {
@@ -31,7 +32,7 @@ class BlogPage extends React.Component {
   
   fetchPosts() {
     request
-      .get('http://localhost:3001/posts')
+      .get(`${API_SERVER_PATH}/posts`)
       .set({Accept: 'application/json'})
       .end((err, res) => this.setState({ items: camelizeKeys(res.body) }));
   }

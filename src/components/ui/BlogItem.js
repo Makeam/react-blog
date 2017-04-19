@@ -5,16 +5,15 @@ import TextBox from 'components/ui/TextBox';
 import LikeBox from 'components/ui/LikeBox';
 import { Panel, Row, Col } from 'react-bootstrap';
 import Link from 'components/elements/Link';
-import { postPath } from 'helpers/routes';
 
-const BlogItem = ({id, img, text, meta, likesHandler}) => (
+const BlogItem = ({id, img, text, meta, likesHandler, url}) => (
     <Panel>
       <Row>
         <Col md={4} xs={6}>
           <ImageBox {...img} />
         </Col>
         <Col md={4} xs={6}>
-          <Link to={postPath(id)}>
+          <Link to={url}>
             <TextBox text={text} />
           </Link>
         </Col>
@@ -51,7 +50,8 @@ BlogItem.propTypes = {
     updatedAt: PropTypes.string,
     likesCount: PropTypes.number
   }),
-  likesHandler: PropTypes.func.isRequired
+  likesHandler: PropTypes.func.isRequired,
+  url: PropTypes.string
 };
 
 export default BlogItem;

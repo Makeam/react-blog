@@ -1,17 +1,20 @@
 import React, { PropTypes } from 'react';
 import BlogItem from 'components/ui/BlogItem';
 import { map } from 'lodash/collection';
+import { postPath } from 'helpers/routes';
 
 const BlogList = ({items, likesHandler}) => {
   let i = -1;
   const blogItems = map(items, item => {
     i += 1;
     let y = i;
+    let post_url = postPath(item.id);
     return (
       <div key={item.id}>
         <BlogItem
           {...item}
           likesHandler = {() => likesHandler(y)}
+          post_url
         />
       </div>
     );}
