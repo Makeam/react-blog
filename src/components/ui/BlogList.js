@@ -8,13 +8,13 @@ const BlogList = ({items, likesHandler}) => {
   const blogItems = map(items, item => {
     i += 1;
     let y = i;
-    let post_url = postPath(item.id);
+    let postUrl = postPath(item.id);
     return (
       <div key={item.id}>
         <BlogItem
           {...item}
           likesHandler = {() => likesHandler(y)}
-          post_url
+          url = {postUrl}
         />
       </div>
     );}

@@ -6,7 +6,7 @@ import LikeBox from 'components/ui/LikeBox';
 import { Panel, Row, Col } from 'react-bootstrap';
 import Link from 'components/elements/Link';
 
-const BlogItem = ({id, img, text, meta, likesHandler, url}) => (
+const BlogItem = ({img, text, meta, likesHandler, url}) => (
     <Panel>
       <Row>
         <Col md={4} xs={6}>
