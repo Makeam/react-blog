@@ -3,18 +3,13 @@ import BlogList from 'components/ui/BlogList';
 import Chart from 'components/ui/Chart';
 import { Row, Col } from 'react-bootstrap';
 import update from 'immutability-helper';
-import request from 'superagent';
-import { camelizeKeys } from 'humps';
-import { API_SERVER_PATH } from 'constants/blogConfig';
 
 
 class BlogPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {items: []};
-  }
-  componentDidMount() {
-    this.fetchPosts();
+    this.state = {items: props.items};
+    console.log(props);
   }
   
   incrementLikesCount(itemId) {
@@ -30,12 +25,12 @@ class BlogPage extends React.Component {
     );
   }
   
-  fetchPosts() {
-    request
-      .get(`${API_SERVER_PATH}/posts`)
-      .set({Accept: 'application/json'})
-      .end((err, res) => this.setState({ items: camelizeKeys(res.body) }));
-  }
+  // fetchPosts() {
+  //   request
+  //     .get(`${API_SERVER_PATH}/posts`)
+  //     .set({Accept: 'application/json'})
+  //     .end((err, res) => this.setState({ items: camelizeKeys(res.body) }));
+  // }
   
   render() {
     const {items} = this.state;

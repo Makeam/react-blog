@@ -9,21 +9,21 @@ class Post extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: props.params.id,
+      //page: props.params.id,
       item: {}
     };
   }
   
-  componentDidMount() {
-    this.fetchPost();
-  }
+  // componentDidMount() {
+  //   this.fetchPost();
+  // }
   
-  fetchPost() {
-    request
-      .get(`${API_SERVER_PATH}/posts/${this.state.page}`)
-      .set({Accept: 'application/json'})
-      .end((err, res) => this.setState({ item: camelizeKeys(res.body) }));
-  }
+  // fetchPost() {
+  //   request
+  //     .get(`${API_SERVER_PATH}/posts/${this.state.page}`)
+  //     .set({Accept: 'application/json'})
+  //     .end((err, res) => this.setState({ item: camelizeKeys(res.body) }));
+  // }
   
   incrementLikesCount() {
     this.setState({
@@ -39,14 +39,20 @@ class Post extends React.Component {
   render() {
     return (
       <div>
-        <BlogItem { ...this.state.item} likesHandler = {() => this.incrementLikesCount()} />
+        {
+          item &&
+          <BlogItem
+            { ...this.props.item}
+            likesHandler = {() => this.incrementLikesCount()}
+          />
+        }
       </div>
     );
   }
 }
 
 Post.propTypes = {
-  params: PropTypes.object
+  item: PropTypes.object
 };
 
 export default Post;
