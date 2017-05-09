@@ -1,29 +1,14 @@
 import React, { PropTypes } from 'react';
 import BlogItem from 'components/ui/BlogItem';
 import update from 'immutability-helper';
-import request from 'superagent';
-import { API_SERVER_PATH } from 'constants/blogConfig';
-import { camelizeKeys } from 'humps';
 
 class Post extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      //page: props.params.id,
       item: {}
     };
   }
-  
-  // componentDidMount() {
-  //   this.fetchPost();
-  // }
-  
-  // fetchPost() {
-  //   request
-  //     .get(`${API_SERVER_PATH}/posts/${this.state.page}`)
-  //     .set({Accept: 'application/json'})
-  //     .end((err, res) => this.setState({ item: camelizeKeys(res.body) }));
-  // }
   
   incrementLikesCount() {
     this.setState({
@@ -35,14 +20,18 @@ class Post extends React.Component {
     });
   }
   
+  componentWillReceiveProps(newProps) {
+    this.setState({ item: newProps.item });
+  }
+  
   
   render() {
     return (
       <div>
         {
-          item &&
+          this.state.item &&
           <BlogItem
-            { ...this.props.item}
+            { ...this.state.item}
             likesHandler = {() => this.incrementLikesCount()}
           />
         }

@@ -20,6 +20,7 @@ export function fetchPost(id) {
     dispatch(requestPost(id));
     return request
       .get(`${API_SERVER_PATH}/posts/${id}`)
+      .set({Accept: 'application/json'})
       .end((err, response) => {
         err ? dispatch(errorPost()) : dispatch(receivePost(response.body));
       });

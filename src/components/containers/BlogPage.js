@@ -9,7 +9,6 @@ class BlogPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {items: props.items};
-    console.log(props);
   }
   
   incrementLikesCount(itemId) {
@@ -25,12 +24,9 @@ class BlogPage extends React.Component {
     );
   }
   
-  // fetchPosts() {
-  //   request
-  //     .get(`${API_SERVER_PATH}/posts`)
-  //     .set({Accept: 'application/json'})
-  //     .end((err, res) => this.setState({ items: camelizeKeys(res.body) }));
-  // }
+  componentWillReceiveProps(newProps) {
+    this.state = {items: newProps.items};
+  }
   
   render() {
     const {items} = this.state;
